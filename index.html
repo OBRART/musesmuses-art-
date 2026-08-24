@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Muses — Art Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest: #1C2B1A;
+    --forest-mid: #2B3D22;
+    --foliage: #5C7A3A;
+    --sage: #7A8C6E;
+    --terra: #8B4A2A;
+    --bordeaux: #7A3020;
+    --gold: #B8935A;
+    --ocre: #C4742A;
+    --parchment: #EDE4CC;
+    --linen: #F5F0E8;
+    --ink: #1A1E14;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--linen);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ============ NAV ============ */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  header.scrolled {
+    background: rgba(28, 43, 26, 0.94);
+    backdrop-filter: blur(6px);
+    padding: 14px 40px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    color: var(--parchment);
+    text-transform: uppercase;
+  }
+  .header-right { display: flex; align-items: center; gap: 30px; }
+  nav ul { display: flex; align-items: center; gap: 36px; }
+  nav a {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--parchment);
+    opacity: 0.82;
+    transition: opacity .3s ease;
+  }
+  nav a:hover { opacity: 1; }
+  .nav-cta {
+    border: 1px solid var(--gold);
+    padding: 9px 20px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold) !important;
+    opacity: 1 !important;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--forest) !important; }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .lang-switch button {
+    background: none;
+    border: none;
+    color: var(--sage);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 2px;
+    opacity: 0.7;
+    transition: opacity .3s ease, color .3s ease;
+  }
+  .lang-switch button.active { color: var(--gold); opacity: 1; }
+  .lang-switch button:hover { opacity: 1; }
+  .lang-switch .sep { color: var(--sage); opacity: 0.4; font-size: 11px; }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    background: var(--forest);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 140px 40px 100px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 20%, rgba(184,147,90,0.14), transparent),
+      radial-gradient(ellipse 50% 60% at 10% 90%, rgba(92,122,58,0.18), transparent);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    color: var(--forest);
+    background: var(--gold);
+    padding: 8px 16px;
+    margin-bottom: 26px;
+    font-weight: 500;
+  }
+  .hero-line {
+    width: 46px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 1.08;
+    color: var(--parchment);
+    letter-spacing: 0.01em;
+    max-width: 720px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .hero p {
+    margin-top: 26px;
+    max-width: 460px;
+    font-size: 16px;
+    color: var(--sage);
+    font-weight: 300;
+  }
+  .hero-ctas { margin-top: 42px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 1px;
+    transition: all .3s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+  }
+  .btn-gold { background: var(--gold); color: var(--forest); }
+  .btn-gold:hover { background: var(--ocre); }
+  .btn-outline { border-color: rgba(237,228,204,0.35); color: var(--parchment); }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .muse-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 34px;
+    height: 100%;
+    justify-content: center;
+    border-left: 1px solid rgba(184,147,90,0.25);
+    padding-left: 40px;
+  }
+  .muse-name {
+    writing-mode: vertical-rl;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: var(--sage);
+    opacity: 0.55;
+    transition: opacity .4s ease, color .4s ease;
+  }
+  .muse-name:hover { opacity: 1; color: var(--gold); }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 36px; left: 40px;
+    display: flex; align-items: center; gap: 12px;
+    color: var(--sage); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .scroll-cue .line { width: 28px; height: 1px; background: var(--sage); }
+
+  /* ============ SECTION SHELL ============ */
+  section { padding: 120px 0; }
+  .section-head { max-width: 620px; margin-bottom: 64px; }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 4vw, 46px);
+    margin-top: 14px;
+    line-height: 1.18;
+  }
+  .section-head p {
+    margin-top: 18px;
+    color: var(--forest-mid);
+    opacity: 0.75;
+    font-weight: 300;
+    max-width: 520px;
+  }
+  .center { text-align: center; margin-left: auto; margin-right: auto; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ============ MISSION ============ */
+  .mission { background: var(--linen); }
+  .mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .mission-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .mission-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  .mission-item p { font-size: 14.5px; color: var(--forest-mid); opacity: 0.8; font-weight: 300; }
+
+  /* ============ FIRST LOOK ============ */
+  .firstlook {
+    background: var(--forest);
+    color: var(--parchment);
+    position: relative;
+  }
+  .firstlook::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(184,147,90,0.12), transparent);
+  }
+  .fl-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+  }
+  .fl-grid .eyebrow { color: var(--gold); }
+  .fl-grid h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(30px, 3.6vw, 42px);
+    margin: 16px 0 20px;
+  }
+  .fl-grid p { color: var(--sage); font-weight: 300; max-width: 440px; }
+  .fl-card {
+    background: rgba(237,228,204,0.05);
+    border: 1px solid rgba(184,147,90,0.3);
+    padding: 46px 40px;
+  }
+  .fl-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--gold);
+  }
+  .fl-price span { font-size: 15px; color: var(--sage); font-family: 'Jost', sans-serif; }
+  .fl-card ul { margin: 26px 0 32px; }
+  .fl-card li {
+    font-size: 14px; font-weight: 300; color: var(--parchment);
+    padding: 10px 0;
+    border-top: 1px solid rgba(184,147,90,0.18);
+  }
+  .fl-card li:first-child { border-top: none; }
+
+  /* ============ ABONOS / PRICING ============ */
+  .pricing { background: var(--parchment); }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .price-card {
+    background: var(--linen);
+    border: 1px solid rgba(28,43,26,0.1);
+    padding: 44px 34px;
+    position: relative;
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+  .price-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(28,43,26,0.12); }
+  .price-card.featured {
+    border-color: var(--gold);
+    background: var(--forest);
+    color: var(--parchment);
+  }
+  .price-card.featured .eyebrow { color: var(--gold); }
+  .price-card.featured .muse-tag { color: var(--sage); }
+  .badge {
+    position: absolute; top: -13px; right: 34px;
+    background: var(--gold); color: var(--forest);
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 5px 12px;
+  }
+  .muse-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--sage);
+    margin-top: 6px;
+  }
+  .price-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 30px;
+    margin-top: 22px;
+  }
+  .price-card .amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    margin-top: 14px;
+  }
+  .price-card .amount span { font-size: 13px; font-family: 'Jost', sans-serif; opacity: 0.6; }
+  .price-card ul { margin: 26px 0 34px; }
+  .price-card li {
+    font-size: 13.5px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(28,43,26,0.08);
+    font-weight: 300;
+  }
+  .price-card.featured li { border-top: 1px solid rgba(184,147,90,0.18); }
+  .price-card li:first-child { border-top: none; }
+  .price-card .btn { width: 100%; text-align: center; }
+  .price-card:not(.featured) .btn-gold { background: var(--forest); color: var(--parchment); }
+  .price-card:not(.featured) .btn-gold:hover { background: var(--bordeaux); }
+
+  .price-note {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--forest-mid);
+    opacity: 0.65;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  /* ============ SERVICES A LA CARTE ============ */
+  .services { background: var(--linen); }
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+  }
+  .service-card {
+    background: var(--terra);
+    background: linear-gradient(160deg, #6B5842, #5A4936);
+    color: var(--parchment);
+    padding: 46px 28px 34px;
+    border-radius: 140px 140px 6px 6px;
+    text-align: center;
+  }
+  .service-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 23px;
+  }
+  .service-card .s-price {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    margin-top: 8px;
+  }
+  .service-card .s-desc {
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-top: 26px;
+    min-height: 66px;
+  }
+  .service-card .s-duration {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--sage);
+    margin-top: 20px;
+  }
+  .services-footnote {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--forest-mid);
+    opacity: 0.7;
+    font-weight: 300;
+  }
+  .services-footnote a { color: var(--terra); border-bottom: 1px solid currentColor; }
+
+  /* ============ WAITLIST ============ */
+  .waitlist {
+    background: var(--forest);
+    color: var(--parchment);
+    position: relative;
+    overflow: hidden;
+  }
+  .waitlist::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(184,147,90,0.16), transparent);
+  }
+  .waitlist-inner {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .waitlist-pill {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--forest);
+    background: var(--gold);
+    padding: 8px 18px;
+    margin-bottom: 26px;
+  }
+  .waitlist h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 4.5vw, 48px);
+    margin-bottom: 18px;
+  }
+  .waitlist > .waitlist-inner > p {
+    color: var(--sage);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 44px;
+  }
+  .waitlist-form {
+    background: rgba(237,228,204,0.05);
+    border: 1px solid rgba(184,147,90,0.3);
+    padding: 40px;
+    text-align: left;
+  }
+  .field { margin-bottom: 20px; }
+  .field label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .field input, .field select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(237,228,204,0.3);
+    color: var(--parchment);
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding: 10px 2px;
+    outline: none;
+    transition: border-color .3s ease;
+  }
+  .field select option { background: var(--forest); color: var(--parchment); }
+  .field input:focus, .field select:focus { border-color: var(--gold); }
+  .waitlist-form .btn { width: 100%; text-align: center; border: none; margin-top: 8px; }
+  .waitlist-note {
+    margin-top: 22px;
+    font-size: 12.5px;
+    color: var(--sage);
+    opacity: 0.85;
+    text-align: center;
+    font-weight: 300;
+  }
+  .waitlist-success {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .waitlist-form.sent form { display: none; }
+  .waitlist-form.sent .waitlist-success { display: block; }
+
+  /* ============ ABOUT ============ */
+  .about { background: var(--forest); color: var(--parchment); }
+  .about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 70px; align-items: start; }
+  .about .eyebrow { color: var(--gold); }
+  .about h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(30px,3.6vw,42px); margin: 16px 0 24px; }
+  .about p { color: var(--sage); font-weight: 300; max-width: 460px; }
+  .founders { display: flex; flex-direction: column; gap: 30px; }
+  .founder { border-top: 1px solid rgba(184,147,90,0.2); padding-top: 24px; }
+  .founder h4 { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; color: var(--gold); }
+  .founder p { color: var(--parchment); opacity: 0.75; font-size: 14px; margin-top: 8px; max-width: 100%; }
+
+  /* ============ CONTACT ============ */
+  .contact { background: var(--parchment); text-align: center; }
+  .contact h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px,5vw,54px); }
+  .contact p { margin: 20px auto 36px; max-width: 480px; color: var(--forest-mid); font-weight: 300; }
+
+  /* ============ FOOTER ============ */
+  footer { background: var(--forest); color: var(--sage); padding: 56px 0 36px; }
+  .footer-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  footer .logo { font-size: 18px; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-bottom {
+    margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid rgba(184,147,90,0.15);
+    font-size: 11.5px; opacity: 0.5; text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .muse-column { flex-direction: row; border-left: none; border-top: 1px solid rgba(184,147,90,0.25); padding-left: 0; padding-top: 24px; justify-content: flex-start; gap: 28px; }
+    .muse-name { writing-mode: horizontal-tb; }
+    .mission-grid { grid-template-columns: 1fr; gap: 44px; }
+    .fl-grid { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .service-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .wrap { padding: 0 24px; }
+    section { padding: 80px 0; }
+  }
+
+  @media (max-width: 560px) {
+    .service-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="logo">Les Muses</div>
+  <div class="header-right">
+    <nav>
+      <ul>
+        <li><a href="#servicios" data-i18n="nav_services">Services</a></li>
+        <li><a href="#abonos" data-i18n="nav_memberships">Memberships</a></li>
+        <li><a href="#sobre" data-i18n="nav_about">About</a></li>
+        <li><a href="#waitlist" class="nav-cta" data-i18n="nav_cta">Join Waitlist</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <span class="sep">/</span>
+      <button type="button" data-lang="fr">FR</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge reveal in" data-i18n="hero_badge">✦ Founding members — 50% off · Limited spots</div>
+      <div class="hero-line"></div>
+      <div class="eyebrow" data-i18n="hero_eyebrow">Art Consulting</div>
+      <h1 data-i18n="hero_h1">For artists<br>ready to <em>be seen</em>.</h1>
+      <p data-i18n="hero_p">We help emerging artists refine their work, build a profile that convinces, and learn how to sell themselves — with the honest eye that only gallery experience can give.</p>
+      <div class="hero-ctas">
+        <a href="#waitlist" class="btn btn-gold" data-i18n="hero_cta1">Join the waiting list</a>
+        <a href="#abonos" class="btn btn-outline" data-i18n="hero_cta2">See what's included</a>
+      </div>
+    </div>
+    <div class="muse-column">
+      <span class="muse-name">Thalie</span>
+      <span class="muse-name">Erato</span>
+      <span class="muse-name">Calliope</span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span class="line"></span> <span data-i18n="scroll_cue">Discover Les Muses</span></div>
+</section>
+
+<section class="mission">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="mission_eyebrow">Our mission</div>
+      <h2 data-i18n="mission_h2">A gallerist's eye, working for your career.</h2>
+      <p data-i18n="mission_p">Les Muses exists because most talented artists don't fail because of their work — they fail because of how they present it, position it, and sell it.</p>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-item reveal">
+        <span class="num">I.</span>
+        <h3 data-i18n="mission1_h3">Elevate your work</h3>
+        <p data-i18n="mission1_p">An expert outside perspective on your work: what's working, what's diluting it, and how to present it with the strength it deserves.</p>
+      </div>
+      <div class="mission-item reveal">
+        <span class="num">II.</span>
+        <h3 data-i18n="mission2_h3">Strengthen your profile</h3>
+        <p data-i18n="mission2_p">Portfolio, biography, social media — we build a coherent profile that a collector or gallery takes seriously at first glance.</p>
+      </div>
+      <div class="mission-item reveal">
+        <span class="num">III.</span>
+        <h3 data-i18n="mission3_h3">Learn to sell yourself</h3>
+        <p data-i18n="mission3_p">Pricing strategy, positioning and communication: the business tools rarely taught in art school.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="firstlook" id="firstlook">
+  <div class="wrap fl-grid">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="fl_eyebrow">The first step</div>
+      <h2>First Look</h2>
+      <p data-i18n="fl_p">A complete, honest diagnosis of where you stand today — and what you need to take the next step. It's the entry point to Les Muses, and the filter that ensures we only work with artists ready to move forward.</p>
+    </div>
+    <div class="fl-card reveal">
+      <div class="fl-price">250€ <span data-i18n="fl_price_label">/ diagnosis</span></div>
+      <ul>
+        <li data-i18n="fl_li1">Full review of portfolio, Instagram, bio and CV</li>
+        <li data-i18n="fl_li2">Honest assessment of potential and gaps</li>
+        <li data-i18n="fl_li3">Personalized recommendation for next steps</li>
+        <li data-i18n="fl_li4">1 included 30-min call</li>
+      </ul>
+      <a href="#waitlist" class="btn btn-gold" data-preselect="first-look" data-i18n="fl_btn">Join the waitlist</a>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="waitlist">
+  <div class="wrap waitlist-inner reveal">
+    <div class="waitlist-pill" data-i18n="wl_pill">Founding members · 50% off · Limited spots</div>
+    <h2 data-i18n="wl_h2">Join the waiting list</h2>
+    <p data-i18n="wl_p">Les Muses opens soon. Tell us what interests you most and join as a founding member — 50% off, guaranteed, for a limited number of spots.</p>
+    <div class="waitlist-form" id="waitlistForm">
+      <form id="wlForm">
+        <div class="field">
+          <label for="wlEmail" data-i18n="wl_email_label">Your email</label>
+          <input type="email" id="wlEmail" name="email" required placeholder="you@email.com">
+        </div>
+        <div class="field">
+          <label for="wlInterest" data-i18n="wl_interest_label">What are you most interested in?</label>
+          <select id="wlInterest" name="interest">
+            <option value="first-look" data-i18n="wl_opt_firstlook">First Look — diagnostic</option>
+            <option value="thalie" data-i18n="wl_opt_thalie">Thalie — Essential (100€/month)</option>
+            <option value="erato" data-i18n="wl_opt_erato">Erato — Guidance (180€/month)</option>
+            <option value="calliope" data-i18n="wl_opt_calliope">Calliope — Immersion (280€/month)</option>
+            <option value="services" data-i18n="wl_opt_services">One-time services</option>
+            <option value="unsure" data-i18n="wl_opt_unsure">Not sure yet</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-gold" data-i18n="wl_submit">Join the waiting list</button>
+      </form>
+      <div class="waitlist-success" data-i18n="wl_success">✦ You're on the list. We'll be in touch.</div>
+    </div>
+    <p class="waitlist-note" data-i18n="wl_note">Limited founding spots — 50% off your first months, guaranteed.</p>
+  </div>
+</section>
+
+<section class="pricing" id="abonos">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="eyebrow" data-i18n="pricing_eyebrow">Monthly memberships</div>
+      <h2 data-i18n="pricing_h2">Support built around you</h2>
+      <p data-i18n="pricing_p">Three levels of ongoing mentoring, each named after a Muse. Cancel anytime.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card reveal">
+        <div class="eyebrow" data-i18n="tier1_level">Level I</div>
+        <div class="muse-tag">Thalie</div>
+        <h3 data-i18n="tier1_name">Essential</h3>
+        <div class="amount">100€ <span data-i18n="per_month">/ month</span></div>
+        <ul>
+          <li data-i18n="tier1_li1">1 mentoring session per month (45 min)</li>
+          <li data-i18n="tier1_li2">Written feedback on your work or portfolio</li>
+          <li data-i18n="tier1_li3">Priority access to content and resources</li>
+          <li data-i18n="tier1_li4">Email replies within 48h</li>
+        </ul>
+        <a href="#waitlist" class="btn btn-gold" data-preselect="thalie" data-i18n="subscribe">Join the waitlist</a>
+      </div>
+      <div class="price-card featured reveal">
+        <span class="badge" data-i18n="badge_popular">Most popular</span>
+        <div class="eyebrow" data-i18n="tier2_level">Level II</div>
+        <div class="muse-tag">Erato</div>
+        <h3 data-i18n="tier2_name">Guidance</h3>
+        <div class="amount">180€ <span data-i18n="per_month">/ month</span></div>
+        <ul>
+          <li data-i18n="tier2_li1">2 mentoring sessions per month (45 min)</li>
+          <li data-i18n="tier2_li2">Portfolio review and profile strategy</li>
+          <li data-i18n="tier2_li3">Unlimited feedback by message</li>
+          <li data-i18n="tier2_li4">Positioning and pricing recommendations</li>
+        </ul>
+        <a href="#waitlist" class="btn btn-gold" data-preselect="erato" data-i18n="subscribe">Join the waitlist</a>
+      </div>
+      <div class="price-card reveal">
+        <div class="eyebrow" data-i18n="tier3_level">Level III</div>
+        <div class="muse-tag">Calliope</div>
+        <h3 data-i18n="tier3_name">Immersion</h3>
+        <div class="amount">280€ <span data-i18n="per_month">/ month</span></div>
+        <ul>
+          <li data-i18n="tier3_li1">Weekly mentoring sessions (45 min)</li>
+          <li data-i18n="tier3_li2">Personalized business and social strategy</li>
+          <li data-i18n="tier3_li3">Support with opportunities and contacts</li>
+          <li data-i18n="tier3_li4">Priority availability and ongoing support</li>
+        </ul>
+        <a href="#waitlist" class="btn btn-gold" data-preselect="calliope" data-i18n="subscribe">Join the waitlist</a>
+      </div>
+    </div>
+    <p class="price-note" data-i18n="pricing_note">Join the waiting list now for 50% off as a founding member. Limited spots per level.</p>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" data-i18n="services_eyebrow">One-time services</div>
+      <h2 data-i18n="services_h2">À la carte</h2>
+      <p data-i18n="services_p">For when you need something specific, no monthly commitment.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <h4 data-i18n="s1_name">Bio, CV &amp; Artist Statement</h4>
+        <div class="s-price">250 EUR</div>
+        <div class="s-desc" data-i18n="s1_desc">Professional writing of your biography, CV, artist statement and application texts.</div>
+        <div class="s-duration" data-i18n="s1_dur">Call 30 min</div>
+      </div>
+      <div class="service-card reveal">
+        <h4 data-i18n="s2_name">Pricing Strategy</h4>
+        <div class="s-price">250 EUR</div>
+        <div class="s-desc" data-i18n="s2_desc">Artwork pricing guidance, with a call and a pricing framework document.</div>
+        <div class="s-duration" data-i18n="s2_dur">Call 30 min</div>
+      </div>
+      <div class="service-card reveal">
+        <h4 data-i18n="s3_name">Portfolio Design</h4>
+        <div class="s-price">350 EUR</div>
+        <div class="s-desc" data-i18n="s3_desc">Editorial curation and professional layout design for your portfolio.</div>
+        <div class="s-duration" data-i18n="s3_dur">Call 45 min</div>
+      </div>
+      <div class="service-card reveal">
+        <h4 data-i18n="s4_name">Social Media Strategy</h4>
+        <div class="s-price" data-i18n="s4_price">From 500 EUR</div>
+        <div class="s-desc" data-i18n="s4_desc">One-time audit and content strategy, or ongoing monthly management.</div>
+        <div class="s-duration" data-i18n="s4_dur">Call 45–60 min</div>
+      </div>
+    </div>
+    <p class="services-footnote" data-i18n="services_footnote">Also need a website? <a href="#contacto">Ask us</a>. Interested in one of these? <a href="#waitlist" data-preselect="services">Join the waitlist</a>.</p>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="eyebrow" data-i18n="about_eyebrow">Who we are</div>
+      <h2 data-i18n="about_h2">Two perspectives, one standard.</h2>
+      <p data-i18n="about_p">Les Muses was born from years spent inside the art world, working alongside artists — knowing exactly what makes a body of work, a profile, or a career truly stand out.</p>
+    </div>
+    <div class="founders reveal">
+      <div class="founder">
+        <h4>Charlotte</h4>
+        <p data-i18n="founder_charlotte">Gallery director in Luxembourg, with years of experience placing emerging artists' work in major private collections.</p>
+      </div>
+      <div class="founder">
+        <h4>Borja</h4>
+        <p data-i18n="founder_borja">Co-founder of Les Muses, focused on strategy, brand-building, and the experience of every artist we work with.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow" data-i18n="contact_eyebrow">Let's start</div>
+    <h2 class="serif" data-i18n="contact_h2">Ready for the next step?</h2>
+    <p data-i18n="contact_p">Get in touch and we'll help you get started — with a First Look, or straight into the membership that suits you best.</p>
+    <a href="mailto:hello@musesmuses.art" class="btn btn-gold">hello@musesmuses.art</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="logo serif">Les Muses</div>
+    <div class="footer-links">
+      <a href="https://instagram.com/lesmuses.art" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hello@musesmuses.art">Email</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom" data-i18n="footer_bottom">© 2026 Les Muses. Art consulting for artists ready to be seen.</div>
+</footer>
+
+<script>
+  const translations = {
+    nav_services: { en: "Services", fr: "Services" },
+    nav_memberships: { en: "Memberships", fr: "Abonnements" },
+    nav_about: { en: "About", fr: "À propos" },
+    nav_cta: { en: "Join Waitlist", fr: "Liste d'attente" },
+    hero_badge: { en: "✦ Founding members — 50% off · Limited spots", fr: "✦ Membres fondateurs — -50% · Places limitées" },
+    hero_eyebrow: { en: "Art Consulting", fr: "Conseil en art" },
+    hero_h1: { en: "For artists<br>ready to <em>be seen</em>.", fr: "Pour les artistes<br>prêts à <em>être vus</em>." },
+    hero_p: { en: "We help emerging artists refine their work, build a profile that convinces, and learn how to sell themselves — with the honest eye that only gallery experience can give.", fr: "Nous aidons les artistes émergents à sublimer leur travail, à construire un profil convaincant et à apprendre à se vendre — avec le regard honnête que seule l'expérience en galerie peut offrir." },
+    hero_cta1: { en: "Join the waiting list", fr: "Rejoindre la liste d'attente" },
+    hero_cta2: { en: "See what's included", fr: "Voir ce qui est inclus" },
+    scroll_cue: { en: "Discover Les Muses", fr: "Découvrir Les Muses" },
+    mission_eyebrow: { en: "Our mission", fr: "Notre mission" },
+    mission_h2: { en: "A gallerist's eye, working for your career.", fr: "Le regard d'une galeriste, au service de votre carrière." },
+    mission_p: { en: "Les Muses exists because most talented artists don't fail because of their work — they fail because of how they present it, position it, and sell it.", fr: "Les Muses existe parce que la plupart des artistes talentueux n'échouent pas à cause de leur travail — mais à cause de la façon dont ils le présentent, le positionnent et le vendent." },
+    mission1_h3: { en: "Elevate your work", fr: "Sublimer votre travail" },
+    mission1_p: { en: "An expert outside perspective on your work: what's working, what's diluting it, and how to present it with the strength it deserves.", fr: "Un regard extérieur et expert sur votre travail : ce qui fonctionne, ce qui l'affaiblit, et comment le présenter avec toute la force qu'il mérite." },
+    mission2_h3: { en: "Strengthen your profile", fr: "Renforcer votre profil" },
+    mission2_p: { en: "Portfolio, biography, social media — we build a coherent profile that a collector or gallery takes seriously at first glance.", fr: "Portfolio, biographie, réseaux sociaux — nous construisons un profil cohérent qu'un collectionneur ou une galerie prend au sérieux dès le premier regard." },
+    mission3_h3: { en: "Learn to sell yourself", fr: "Apprendre à vous vendre" },
+    mission3_p: { en: "Pricing strategy, positioning and communication: the business tools rarely taught in art school.", fr: "Stratégie de prix, positionnement et communication : les outils commerciaux rarement enseignés aux beaux-arts." },
+    fl_eyebrow: { en: "The first step", fr: "La première étape" },
+    fl_p: { en: "A complete, honest diagnosis of where you stand today — and what you need to take the next step. It's the entry point to Les Muses, and the filter that ensures we only work with artists ready to move forward.", fr: "Un diagnostic complet et honnête de votre situation actuelle — et de ce dont vous avez besoin pour passer à l'étape suivante. C'est le point d'entrée de Les Muses, et le filtre qui garantit que nous ne travaillons qu'avec des artistes prêts à avancer." },
+    fl_price_label: { en: "/ diagnosis", fr: "/ diagnostic" },
+    fl_li1: { en: "Full review of portfolio, Instagram, bio and CV", fr: "Analyse complète du portfolio, d'Instagram, de la bio et du CV" },
+    fl_li2: { en: "Honest assessment of potential and gaps", fr: "Évaluation honnête du potentiel et des lacunes" },
+    fl_li3: { en: "Personalized recommendation for next steps", fr: "Recommandation personnalisée pour la suite" },
+    fl_li4: { en: "1 included 30-min call", fr: "1 appel de 30 min inclus" },
+    fl_btn: { en: "Join the waitlist", fr: "Rejoindre la liste d'attente" },
+    wl_pill: { en: "Founding members · 50% off · Limited spots", fr: "Membres fondateurs · -50% · Places limitées" },
+    wl_h2: { en: "Join the waiting list", fr: "Rejoignez la liste d'attente" },
+    wl_p: { en: "Les Muses opens soon. Tell us what interests you most and join as a founding member — 50% off, guaranteed, for a limited number of spots.", fr: "Les Muses ouvre bientôt. Dites-nous ce qui vous intéresse le plus et rejoignez-nous en tant que membre fondateur — -50% garanti, places limitées." },
+    wl_email_label: { en: "Your email", fr: "Votre email" },
+    wl_interest_label: { en: "What are you most interested in?", fr: "Qu'est-ce qui vous intéresse le plus ?" },
+    wl_opt_firstlook: { en: "First Look — diagnostic", fr: "First Look — diagnostic" },
+    wl_opt_thalie: { en: "Thalie — Essential (100€/month)", fr: "Thalie — Essentiel (100€/mois)" },
+    wl_opt_erato: { en: "Erato — Guidance (180€/month)", fr: "Erato — Accompagnement (180€/mois)" },
+    wl_opt_calliope: { en: "Calliope — Immersion (280€/month)", fr: "Calliope — Immersion (280€/mois)" },
+    wl_opt_services: { en: "One-time services", fr: "Services ponctuels" },
+    wl_opt_unsure: { en: "Not sure yet", fr: "Je ne sais pas encore" },
+    wl_submit: { en: "Join the waiting list", fr: "Rejoindre la liste d'attente" },
+    wl_success: { en: "✦ You're on the list. We'll be in touch.", fr: "✦ Vous êtes sur la liste. On vous recontacte bientôt." },
+    wl_note: { en: "Limited founding spots — 50% off your first months, guaranteed.", fr: "Places de fondateur limitées — -50% garanti sur vos premiers mois." },
+    pricing_eyebrow: { en: "Monthly memberships", fr: "Abonnements mensuels" },
+    pricing_h2: { en: "Support built around you", fr: "Un accompagnement sur mesure" },
+    pricing_p: { en: "Three levels of ongoing mentoring, each named after a Muse. Cancel anytime.", fr: "Trois niveaux d'accompagnement continu, chacun portant le nom d'une Muse. Résiliable à tout moment." },
+    tier1_level: { en: "Level I", fr: "Niveau I" },
+    tier1_name: { en: "Essential", fr: "Essentiel" },
+    tier1_li1: { en: "1 mentoring session per month (45 min)", fr: "1 séance de mentoring par mois (45 min)" },
+    tier1_li2: { en: "Written feedback on your work or portfolio", fr: "Retour écrit sur votre travail ou portfolio" },
+    tier1_li3: { en: "Priority access to content and resources", fr: "Accès prioritaire aux contenus et ressources" },
+    tier1_li4: { en: "Email replies within 48h", fr: "Réponse par email sous 48h" },
+    badge_popular: { en: "Most popular", fr: "Le plus choisi" },
+    tier2_level: { en: "Level II", fr: "Niveau II" },
+    tier2_name: { en: "Guidance", fr: "Accompagnement" },
+    tier2_li1: { en: "2 mentoring sessions per month (45 min)", fr: "2 séances de mentoring par mois (45 min)" },
+    tier2_li2: { en: "Portfolio review and profile strategy", fr: "Analyse de portfolio et stratégie de profil" },
+    tier2_li3: { en: "Unlimited feedback by message", fr: "Retours illimités par message" },
+    tier2_li4: { en: "Positioning and pricing recommendations", fr: "Recommandations de positionnement et de prix" },
+    tier3_level: { en: "Level III", fr: "Niveau III" },
+    tier3_name: { en: "Immersion", fr: "Immersion" },
+    tier3_li1: { en: "Weekly mentoring sessions (45 min)", fr: "Séances de mentoring hebdomadaires (45 min)" },
+    tier3_li2: { en: "Personalized business and social strategy", fr: "Stratégie commerciale et réseaux personnalisée" },
+    tier3_li3: { en: "Support with opportunities and contacts", fr: "Accompagnement sur les opportunités et contacts" },
+    tier3_li4: { en: "Priority availability and ongoing support", fr: "Disponibilité prioritaire et soutien continu" },
+    per_month: { en: "/ month", fr: "/ mois" },
+    subscribe: { en: "Join the waitlist", fr: "Rejoindre la liste d'attente" },
+    pricing_note: { en: "Join the waiting list now for 50% off as a founding member. Limited spots per level.", fr: "Rejoignez la liste d'attente pour -50% en tant que membre fondateur. Places limitées par niveau." },
+    services_eyebrow: { en: "One-time services", fr: "Services ponctuels" },
+    services_h2: { en: "À la carte", fr: "À la carte" },
+    services_p: { en: "For when you need something specific, no monthly commitment.", fr: "Pour un besoin précis, sans engagement mensuel." },
+    s1_name: { en: "Bio, CV &amp; Artist Statement", fr: "Bio, CV et Artist Statement" },
+    s1_desc: { en: "Professional writing of your biography, CV, artist statement and application texts.", fr: "Rédaction professionnelle de votre biographie, CV, artist statement et textes de candidature." },
+    s1_dur: { en: "Call 30 min", fr: "Appel 30 min" },
+    s2_name: { en: "Pricing Strategy", fr: "Stratégie de prix" },
+    s2_desc: { en: "Artwork pricing guidance, with a call and a pricing framework document.", fr: "Conseil sur le prix de vos œuvres, avec appel et document de calcul." },
+    s2_dur: { en: "Call 30 min", fr: "Appel 30 min" },
+    s3_name: { en: "Portfolio Design", fr: "Conception de portfolio" },
+    s3_desc: { en: "Editorial curation and professional layout design for your portfolio.", fr: "Curation éditoriale et mise en page professionnelle de votre portfolio." },
+    s3_dur: { en: "Call 45 min", fr: "Appel 45 min" },
+    s4_name: { en: "Social Media Strategy", fr: "Stratégie réseaux sociaux" },
+    s4_price: { en: "From 500 EUR", fr: "À partir de 500 EUR" },
+    s4_desc: { en: "One-time audit and content strategy, or ongoing monthly management.", fr: "Audit ponctuel et stratégie de contenu, ou gestion mensuelle continue." },
+    s4_dur: { en: "Call 45–60 min", fr: "Appel 45–60 min" },
+    services_footnote: { en: 'Also need a website? <a href="#contacto">Ask us</a>. Interested in one of these? <a href="#waitlist" data-preselect="services">Join the waitlist</a>.', fr: 'Besoin aussi d\'un site web ? <a href="#contacto">Demandez-nous</a>. Intéressé par l\'un d\'eux ? <a href="#waitlist" data-preselect="services">Rejoindre la liste d\'attente</a>.' },
+    about_eyebrow: { en: "Who we are", fr: "Qui sommes-nous" },
+    about_h2: { en: "Two perspectives, one standard.", fr: "Deux regards, une même exigence." },
+    about_p: { en: "Les Muses was born from years spent inside the art world, working alongside artists — knowing exactly what makes a body of work, a profile, or a career truly stand out.", fr: "Les Muses est née de plusieurs années passées dans le monde de l'art, aux côtés d'artistes — en sachant précisément ce qui fait qu'une œuvre, un profil ou une carrière se démarquent vraiment." },
+    founder_charlotte: { en: "Gallery director in Luxembourg, with years of experience placing emerging artists' work in major private collections.", fr: "Directrice de galerie au Luxembourg, avec plusieurs années d'expérience dans le placement d'œuvres d'artistes émergents au sein de grandes collections privées." },
+    founder_borja: { en: "Co-founder of Les Muses, focused on strategy, brand-building, and the experience of every artist we work with.", fr: "Cofondateur de Les Muses, en charge de la stratégie, de la construction de la marque et de l'expérience de chaque artiste avec qui nous travaillons." },
+    contact_eyebrow: { en: "Let's start", fr: "Commençons" },
+    contact_h2: { en: "Ready for the next step?", fr: "Prêt·e pour la prochaine étape ?" },
+    contact_p: { en: "Get in touch and we'll help you get started — with a First Look, or straight into the membership that suits you best.", fr: "Écrivez-nous et nous vous aiderons à démarrer — avec un First Look, ou directement avec l'abonnement qui vous correspond." },
+    footer_bottom: { en: "© 2026 Les Muses. Art consulting for artists ready to be seen.", fr: "© 2026 Les Muses. Conseil en art pour les artistes prêts à être vus." }
+  };
+
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const entry = translations[key];
+      if (entry && entry[lang]) el.innerHTML = entry[lang];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Preselect the waitlist interest when a "Join the waitlist" link is clicked anywhere on the page
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-preselect]');
+    if (!el) return;
+    const value = el.dataset.preselect;
+    const select = document.getElementById('wlInterest');
+    if (select && [...select.options].some(o => o.value === value)) {
+      select.value = value;
+    }
+  });
+
+  // Waitlist form — conectado directamente a Google Forms (respuestas → Google Sheet)
+  const GOOGLE_FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLScJoqsgd1y1eihP-mEVE_O0h4qL8PtHDo2EdpRGsYRCiJt9gA/formResponse';
+  const GOOGLE_FORM_ENTRIES = { email: 'entry.1302941505', interest: 'entry.94359982' };
+  const wlInterestLabels = {
+    'first-look': 'First Look — diagnostic',
+    'thalie': 'Thalie — Essential (100€/month)',
+    'erato': 'Erato — Guidance (180€/month)',
+    'calliope': 'Calliope — Immersion (280€/month)',
+    'services': 'One-time services',
+    'unsure': 'Not sure yet'
+  };
+
+  const wlForm = document.getElementById('wlForm');
+  const wlFormWrap = document.getElementById('waitlistForm');
+  wlForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    params.append(GOOGLE_FORM_ENTRIES.email, wlForm.email.value);
+    params.append(GOOGLE_FORM_ENTRIES.interest, wlInterestLabels[wlForm.interest.value] || wlForm.interest.value);
+    fetch(GOOGLE_FORM_ACTION, { method: 'POST', mode: 'no-cors', body: params })
+      .catch(() => {})
+      .finally(() => wlFormWrap.classList.add('sent'));
+  });
+</script>
+
+</body>
+</html>
