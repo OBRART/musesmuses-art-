@@ -347,7 +347,6 @@
     color: var(--parchment);
   }
   .price-card.featured .eyebrow { color: var(--gold); }
-  .price-card.featured .muse-tag { color: var(--sage); }
   .badge {
     position: absolute; top: -13px; right: 34px;
     background: var(--gold); color: var(--forest);
@@ -356,17 +355,23 @@
   }
   .muse-tag {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: var(--sage);
-    margin-top: 6px;
-  }
-  .price-card h3 {
-    font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    font-size: 30px;
-    margin-top: 22px;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-top: 14px;
   }
+  .price-card.featured .muse-tag { color: var(--parchment); }
+  .price-card h3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-top: 8px;
+  }
+  .price-card.featured h3 { color: var(--sage); }
   .price-card .amount {
     font-family: 'Cormorant Garamond', serif;
     font-size: 44px;
@@ -793,7 +798,7 @@
         <div class="s-duration" data-i18n="s4_dur">Call 45–60 min</div>
       </div>
     </div>
-    <p class="services-footnote" data-i18n="services_footnote">Also need a website? <a href="#contacto">Ask us</a>. Interested in one of these? <a href="#waitlist" data-preselect="services">Join the waitlist</a>.</p>
+    <p class="services-footnote" data-i18n="services_footnote">Also need a website? <a href="#contacto">Ask us</a>.</p>
   </div>
 </section>
 
@@ -918,7 +923,7 @@
     s4_price: { en: "From 500 EUR", fr: "À partir de 500 EUR" },
     s4_desc: { en: "One-time audit and content strategy, or ongoing monthly management.", fr: "Audit ponctuel et stratégie de contenu, ou gestion mensuelle continue." },
     s4_dur: { en: "Call 45–60 min", fr: "Appel 45–60 min" },
-    services_footnote: { en: 'Also need a website? <a href="#contacto">Ask us</a>. Interested in one of these? <a href="#waitlist" data-preselect="services">Join the waitlist</a>.', fr: 'Besoin aussi d\'un site web ? <a href="#contacto">Demandez-nous</a>. Intéressé par l\'un d\'eux ? <a href="#waitlist" data-preselect="services">Rejoindre la liste d\'attente</a>.' },
+    services_footnote: { en: 'Also need a website? <a href="#contacto">Ask us</a>.', fr: 'Besoin aussi d\'un site web ? <a href="#contacto">Demandez-nous</a>.' },
     about_eyebrow: { en: "Founder", fr: "Fondatrice" },
     about_h2: { en: "The eye behind muses muses.", fr: "Le regard derrière muses muses." },
     about_p: { en: "muses muses was born from years spent inside galleries, working alongside artists — knowing exactly what makes a body of work, a profile, or a career truly stand out.", fr: "muses muses est née de plusieurs années passées en galerie, aux côtés d'artistes — en sachant précisément ce qui fait qu'une œuvre, un profil ou une carrière se démarquent vraiment." },
