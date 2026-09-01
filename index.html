@@ -402,6 +402,19 @@
     margin-top: 14px;
   }
   .price-card .amount span { font-size: 13px; font-family: 'Ernest', sans-serif; opacity: 0.6; }
+  .price-card .amount .price-old {
+    font-size: 22px;
+    text-decoration: line-through;
+    opacity: 0.4;
+    font-weight: 300;
+    margin-right: 4px;
+  }
+  .price-card .amount .price-new {
+    color: var(--gold);
+    opacity: 1;
+    font-size: 44px;
+  }
+  .price-card.featured .amount .price-old { opacity: 0.45; }
   .price-card ul { margin: 26px 0 34px; }
   .price-card li {
     font-size: 13.5px;
@@ -689,7 +702,7 @@
       <p data-i18n="fl_p">A complete, honest diagnosis of where you stand today — and what you need to take the next step. It's the entry point to muses muses, and the filter that ensures we only work with artists ready to move forward.</p>
     </div>
     <div class="fl-card reveal">
-      <div class="fl-price">250€ <span data-i18n="fl_price_label">/ diagnosis</span></div>
+      <div class="fl-price">150€ <span data-i18n="fl_price_label">/ diagnosis</span></div>
       <ul>
         <li data-i18n="fl_li1">Full review of portfolio, Instagram, bio and CV</li>
         <li data-i18n="fl_li2">Honest assessment of potential and gaps</li>
@@ -716,8 +729,8 @@
           <label for="wlInterest" data-i18n="wl_interest_label">What are you most interested in?</label>
           <select id="wlInterest" name="interest">
             <option value="first-look" data-i18n="wl_opt_firstlook">First Look — diagnostic</option>
-            <option value="erato" data-i18n="wl_opt_erato">Erato — Guidance (150€/month)</option>
-            <option value="calliope" data-i18n="wl_opt_calliope">Calliope — Immersion (280€/month)</option>
+            <option value="erato" data-i18n="wl_opt_erato">Erato — Guidance (75€/month founding price)</option>
+            <option value="calliope" data-i18n="wl_opt_calliope">Calliope — Immersion (140€/month founding price)</option>
             <option value="services" data-i18n="wl_opt_services">One-time services</option>
             <option value="unsure" data-i18n="wl_opt_unsure">Not sure yet</option>
           </select>
@@ -742,7 +755,7 @@
         <div class="eyebrow" data-i18n="tier1_level">Level I</div>
         <div class="muse-tag">Erato</div>
         <h3 data-i18n="tier1_name">Guidance</h3>
-        <div class="amount">150€ <span data-i18n="per_month">/ month</span></div>
+        <div class="amount"><span class="price-old">150€</span> <span class="price-new">75€</span> <span data-i18n="per_month">/ month</span></div>
         <ul>
           <li data-i18n="tier1_li1">1 mentoring session per month (30 min)</li>
           <li data-i18n="tier1_li2">Written feedback by message, reply within 48h</li>
@@ -756,7 +769,7 @@
         <div class="eyebrow" data-i18n="tier2_level">Level II</div>
         <div class="muse-tag">Calliope</div>
         <h3 data-i18n="tier2_name">Immersion</h3>
-        <div class="amount">280€ <span data-i18n="per_month">/ month</span></div>
+        <div class="amount"><span class="price-old">280€</span> <span class="price-new">140€</span> <span data-i18n="per_month">/ month</span></div>
         <ul>
           <li data-i18n="tier2_li1">2 mentoring sessions per month (30 min)</li>
           <li data-i18n="tier2_li2">Unlimited feedback, reply within 24h</li>
@@ -880,8 +893,8 @@
     wl_email_label: { en: "Your email", fr: "Votre email" },
     wl_interest_label: { en: "What are you most interested in?", fr: "Qu'est-ce qui vous intéresse le plus ?" },
     wl_opt_firstlook: { en: "First Look — diagnostic", fr: "First Look — diagnostic" },
-    wl_opt_erato: { en: "Erato — Guidance (150€/month)", fr: "Erato — Accompagnement (150€/mois)" },
-    wl_opt_calliope: { en: "Calliope — Immersion (280€/month)", fr: "Calliope — Immersion (280€/mois)" },
+    wl_opt_erato: { en: "Erato — Guidance (75€/month founding price)", fr: "Erato — Accompagnement (75€/mois, tarif fondateur)" },
+    wl_opt_calliope: { en: "Calliope — Immersion (140€/month founding price)", fr: "Calliope — Immersion (140€/mois, tarif fondateur)" },
     wl_opt_services: { en: "One-time services", fr: "Services ponctuels" },
     wl_opt_unsure: { en: "Not sure yet", fr: "Je ne sais pas encore" },
     wl_submit: { en: "Join the waiting list", fr: "Rejoindre la liste d'attente" },
@@ -984,8 +997,8 @@
   const GOOGLE_FORM_ENTRIES = { email: 'entry.1302941505', interest: 'entry.94359982' };
   const wlInterestLabels = {
     'first-look': 'First Look — diagnostic',
-    'erato': 'Erato — Guidance (150€/month)',
-    'calliope': 'Calliope — Immersion (280€/month)',
+    'erato': 'Erato — Guidance (75€/month founding price)',
+    'calliope': 'Calliope — Immersion (140€/month founding price)',
     'services': 'One-time services',
     'unsure': 'Not sure yet'
   };
